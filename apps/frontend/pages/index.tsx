@@ -1,12 +1,12 @@
 import { Inter } from "next/font/google";
 import { useContext } from "react";
 
-import LoadingSpinner from "@/components/ui/spinner";
-import TodoView from "@/components/todo/todoView";
-import { Label } from "@/components/ui/label";
-import { Button } from "@/components/ui/button";
-import { AuthContext } from "@/lib/providers/authProvider";
-import { logOut } from "@/lib/services/auth/logout";
+import LoadingSpinner from "components/ui/spinner";
+import TodoView from "components/todo/todoView";
+import { Label } from "components/ui/label";
+import { Button } from "components/ui/button";
+import { AuthContext } from "lib/providers/authProvider";
+import { logOut } from "lib/services/auth/logout";
 
 const inter = Inter({ subsets: ["latin"] });
 

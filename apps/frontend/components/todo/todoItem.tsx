@@ -8,9 +8,9 @@ import {
 import { Button } from "../ui/button";
 import { Label } from "../ui/label";
 import { useEffect, useRef, useState } from "react";
-import { setDataAttribute } from "@/lib/utils";
-import { deleteTodo } from "@/lib/services/todo/delete";
-import { updateTodo } from "@/lib/services/todo/update";
+import { setDataAttribute } from "lib/utils";
+import { deleteTodo } from "lib/services/todo/delete";
+import { updateTodo } from "lib/services/todo/update";
 
 type TodoItemProps = {
   id: string;

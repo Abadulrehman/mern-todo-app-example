@@ -5,7 +5,7 @@ import TodoGroup from "./todoGroup";
 import { useState } from "react";
 import TodoDialog from "./todoDialog";
 import { EditData } from "./todoForm";
-import { useListTodo } from "@/lib/services/todo/list";
+import { useListTodo } from "lib/services/todo/list";
 
 const TodoView = () => {
   const { data, isLoading, mutate: reloadTodoList } = useListTodo();

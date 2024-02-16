@@ -2,7 +2,7 @@ import { Card } from "../ui/card";
 import TodoItem from "./todoItem";
 import { Label } from "../ui/label";
 import { Skeleton } from "../ui/skeleton";
-import { Todo } from "@/lib/services/todo/types";
+import { Todo } from "lib/services/todo/types";
 
 type TodoGroupProps = {
   todoList: Todo[];

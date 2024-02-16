@@ -1,7 +1,7 @@
 import axios from "axios";
 import useSwr from "swr";
 import { Todo } from "./types";
-import { getBackendUrl } from "@/lib/utils";
+import { getBackendUrl } from "lib/utils";
 
 export const useListTodo = () => {
   return useSwr<Todo[]>("/todo", listTodo);

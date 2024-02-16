@@ -4,8 +4,8 @@ import { useForm } from "react-hook-form";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Button } from "components/ui/button";
+import { Card } from "components/ui/card";
 import {
   Form,
   FormControl,
@@ -13,29 +13,25 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Label } from "@/components/ui/label";
-import { signUp } from "@/lib/services/auth/signup";
-
-const formSchema = z.object({
-  email: z.string().min(1, "Email is required").email(),
-  password: z.string().min(8, "Password should be at least 8 characters long"),
-});
+} from "components/ui/form";
+import { Input } from "components/ui/input";
+import { Separator } from "components/ui/separator";
+import { Label } from "components/ui/label";
+import { signUp } from "lib/services/auth/signup";
+import { signUpFormSchema } from "@mern-todo-app/models";
 
 const SignUpPage = () => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof signUpFormSchema>>({
+    resolver: zodResolver(signUpFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(formValues: z.infer<typeof formSchema>) {
+  async function onSubmit(formValues: z.infer<typeof signUpFormSchema>) {
     const res = await signUp(formValues.email, formValues.password);
 
     if (res) {

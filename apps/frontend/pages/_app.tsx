@@ -3,8 +3,8 @@ import Head from "next/head";
 
 import "./styles.css";
 
-import { DarkModeToggle } from "@/components/ui/dark-toggle";
-import AuthProvider from "@/lib/providers/authProvider";
+import { DarkModeToggle } from "components/ui/dark-toggle";
+import AuthProvider from "lib/providers/authProvider";
 
 import { Toaster } from "sonner";
 

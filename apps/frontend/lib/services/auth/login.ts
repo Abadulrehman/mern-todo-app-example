@@ -1,6 +1,7 @@
-import { getBackendUrl } from "@/lib/utils";
+import { getBackendUrl } from "lib/utils";
 import axios, { AxiosError } from "axios";
 import { toast } from "sonner";
+import { loginFormSchema } from "../../../../../libs/models/src/from-schemas";
 
 export async function logIn(email: string, password: string) {
   try {
@@ -15,6 +16,7 @@ export async function logIn(email: string, password: string) {
     return true;
   } catch (error) {
     const axiosError = error as AxiosError;
+
     if (axiosError.response?.status === 401) {
       toast.error("Invalid email or password");
     } else {

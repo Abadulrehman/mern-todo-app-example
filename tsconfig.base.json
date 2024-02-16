@@ -1,9 +1,10 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "rootDir": ".",
+    "strict": true,
+    "strictNullChecks": true,
     "sourceMap": true,
-    "declaration": false,
+    "declaration": true,
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -13,9 +14,12 @@
     "lib": ["es2020", "dom"],
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@mern-todo-app-example-new/models": ["libs/models/src/index.ts"]
+      "@mern-todo-app/models": [
+        "libs/models/src/index.ts",
+        "../../libs/models/src/index.ts"
+      ]
     }
   },
   "exclude": ["node_modules", "tmp"]

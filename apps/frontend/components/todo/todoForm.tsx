@@ -1,20 +1,16 @@
-import { useState } from "react";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useState } from 'react';
+import z from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 
-import { LuCheck } from "react-icons/lu";
+import { LuCheck } from 'react-icons/lu';
 
-import { Form, FormControl, FormField, FormMessage } from "../ui/form";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { updateTodo } from "@/lib/services/todo/update";
-import { createTodo } from "@/lib/services/todo/create";
-
-
-const formSchema = z.object({
-  title: z.string().min(1, "Please enter a title").max(100),
-});
+import { todoCreateFormSchema } from '@mern-todo-app/models';
+import { Form, FormControl, FormField, FormMessage } from '../ui/form';
+import { Button } from '../ui/button';
+import { Input } from '../ui/input';
+import { updateTodo } from 'lib/services/todo/update';
+import { createTodo } from 'lib/services/todo/create';
 
 export type EditData = {
   id: string;
@@ -31,14 +27,14 @@ const TodoForm: React.FC<TodoFormProps> = (props) => {
 
   const [savingTodo, setSavingTodo] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof todoCreateFormSchema>>({
+    resolver: zodResolver(todoCreateFormSchema),
     defaultValues: {
-      title: editData?.title ?? "",
+      title: editData?.title ?? '',
     },
   });
 
-  async function onSubmit(formValues: z.infer<typeof formSchema>) {
+  async function onSubmit(formValues: z.infer<typeof todoCreateFormSchema>) {
     setSavingTodo(true);
 
     if (editData) {

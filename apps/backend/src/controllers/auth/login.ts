@@ -4,14 +4,17 @@ import User from "../../models/auth/user";
 
 import { compare } from "bcryptjs";
 import { createToken } from "../../utils/token";
+import { loginFormSchema } from "@mern-todo-app/models";
 
 const login = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const validation = loginFormSchema.safeParse(req.body);
 
-    if (!email || !password) {
-      return res.status(400).send({ message: "Both email and password are required" });
+    if (!validation.success) {
+      return res.status(400).send({ "Errors in input data:": validation.error.formErrors.fieldErrors });
     }
+
+    const { email, password } = validation.data;
 
     const user = await User.findOne({ email });
 

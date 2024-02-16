@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import Todo from "../../models/todo/todo";
 import { getUserFromRequest } from "../../utils/token";
+import { todoDeleteSchema } from "@mern-todo-app/models";
 
 const deleteTodo = async (req: Request, res: Response) => {
   try {
@@ -10,11 +11,13 @@ const deleteTodo = async (req: Request, res: Response) => {
       return res.status(401).send({ message: "Unauthorized" });
     }
 
-    const { todoId } = req.body;
+    const validation = todoDeleteSchema.safeParse(req.body);
 
-    if (!todoId) {
-      return res.status(400).send({ message: "todoId is required" });
+    if (!validation.success) {
+      return res.status(400).send({ "Errors in input data:": validation.error.formErrors.fieldErrors });
     }
+
+    const { todoId } = req.body;
 
     const todo = await Todo.findById(todoId);
 

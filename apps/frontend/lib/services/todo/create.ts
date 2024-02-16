@@ -1,4 +1,4 @@
-import { getBackendUrl } from "@/lib/utils";
+import { getBackendUrl } from "lib/utils";
 import axios from "axios";
 import { toast } from "sonner";
 import { mutate } from "swr";

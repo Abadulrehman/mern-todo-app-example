@@ -11,31 +11,27 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Separator } from "@/components/ui/separator";
-import { Label } from "@/components/ui/label";
-import { logIn } from "@/lib/services/auth/login";
-
-const formSchema = z.object({
-  email: z.string().min(1, "Email is required").email(),
-  password: z.string().min(1, "Password is required"),
-});
+} from "components/ui/form";
+import { Button } from "components/ui/button";
+import { Card } from "components/ui/card";
+import { Input } from "components/ui/input";
+import { Separator } from "components/ui/separator";
+import { Label } from "components/ui/label";
+import { logIn } from "lib/services/auth/login";
+import { loginFormSchema } from "@mern-todo-app/models";
 
 const LoginPage = () => {
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof loginFormSchema>>({
+    resolver: zodResolver(loginFormSchema),
     defaultValues: {
       email: "",
       password: "",
     },
   });
 
-  async function onSubmit(formValues: z.infer<typeof formSchema>) {
+  async function onSubmit(formValues: z.infer<typeof loginFormSchema>) {
     const res = await logIn(formValues.email, formValues.password);
 
     if (res) {

@@ -1,35 +1,39 @@
-import { Request, Response } from "express";
+import { Request, Response } from 'express';
 
-import User from "../../models/auth/user";
+import User from '../../models/auth/user';
 
-import { createToken } from "../../utils/token";
+import { createToken } from '../../utils/token';
+import { signUpFormSchema } from '@mern-todo-app/models';
 
 const signup = async (req: Request, res: Response) => {
   try {
-    const { email, password } = req.body;
+    const validation = signUpFormSchema.safeParse(req.body);
 
-    // TODO: prolly could do some email and password validation here
-    if (!email || !password) {
+    if (!validation.success) {
       return res
         .status(400)
-        .send({ message: "Both email and password are required" });
+        .send({
+          'Errors in input data:': validation.error.formErrors.fieldErrors,
+        });
     }
+
+    const { email, password } = validation.data;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).send({ message: "User already exists" });
+      return res.status(400).send({ message: 'User already exists' });
     }
 
     const user = await User.create({ email, password });
     const token = createToken(user._id.toString());
 
-    res.cookie("token", token, {
+    res.cookie('token', token, {
       httpOnly: false,
     });
 
-    res.status(201).send({ message: "User created successfully" });
+    res.status(201).send({ message: 'User created successfully' });
   } catch (error) {
-    res.status(500).send({ message: "Error creating user" });
+    res.status(500).send({ message: 'Error creating user' });
   }
 };
 
