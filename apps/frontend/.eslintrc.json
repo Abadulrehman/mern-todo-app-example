@@ -8,10 +8,7 @@
   "ignorePatterns": ["!**/*", ".next/**/*"],
   "overrides": [
     {
-      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "rules": {
-        "@next/next/no-html-link-for-pages": ["error", "apps/frontend/pages"]
-      }
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"]
     },
     {
       "files": ["*.ts", "*.tsx"],
