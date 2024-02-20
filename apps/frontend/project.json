@@ -3,38 +3,6 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/frontend",
   "projectType": "application",
-  "targets": {
-    "build": {
-      "executor": "@nx/esbuild:esbuild",
-      "defaultConfiguration": "production",
-      "options": {
-        "outputPath": "dist/apps/frontend",
-        "main": "apps/frontend/pages/_app.tsx",
-        "tsConfig": "apps/frontend/tsconfig.json",
-        "clean": false,
-        "assets": [],
-        "platform": "node",
-        "outputFileName": "index.js",
-        "format": ["cjs"],
-        "bundle": true,
-        "thirdParty": false,
-        "esbuildOptions": {
-          "sourcemap": true,
-          "outExtension": {
-            ".js": ".js"
-          }
-        }
-     },
-     "configurations": {
-        "development": {
-          "sourcemap": true
-        },
-        "production": {
-          "sourcemap": false,
-          "assets": [".npmrc"]
-        }
-     }
-    }
-  },
+  "targets": {},
   "tags": []
 }
